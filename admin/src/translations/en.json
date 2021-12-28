@@ -1,0 +1,7 @@
+{
+  "plugin.name": "Magic Link",
+  "plugin.section.link": "Settings",
+  "plugin.section.instructions": "Set your Magic.link secret key to authenticate your users. Users can still log in via the default Strapi authentication system unless you block registration and/or the native endpoints.",
+  "plugin.section.secretkey": "Magic.link - Secret key",
+  "plugin.section.buttons.submit": "Save"
+}
