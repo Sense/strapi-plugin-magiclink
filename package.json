@@ -1,7 +1,7 @@
 {
   "name": "strapi-plugin-magiclink",
   "version": "1.0.0",
-  "description": "Magic Link Plugin for STRAPI.",
+  "description": "Magic Link Plugin for STRAPI. Authenticate Users with Magic.link service.",
   "strapi": {
     "displayName": "Magic Link",
     "name": "magiclink",
@@ -16,6 +16,10 @@
   "devDependencies": {
     "@strapi/helper-plugin": "4.0.2"
   },
+  "bugs": {
+    "url": "https://github.com/Sense/strapi-plugin-magiclink/issues"
+  },
+  "homepage": "https://github.com/Sense/strapi-plugin-magiclink#readme",
   "author": {
     "name": "Jean-Vincent QUILICHINI",
     "email": "jv.quilichini@gmail.com",
