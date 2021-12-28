@@ -10,6 +10,14 @@ const { name, description } = pluginPkg.strapi;
 
 export default {
   register(app) {
+    app.registerPlugin({
+      id: pluginId,
+      initializer: Initializer,
+      isReady: false,
+      name,
+      description,
+      isRequired: pluginPkg.strapi.required || false,
+    });
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
@@ -19,7 +27,7 @@ export default {
       },
       Component: async () => {
         const component = await import(
-          /* webpackChunkName: "[request]" */ './pages/Settings'
+          /* webpackChunkName: "[magiclink-settings-page]" */ './pages/Settings'
         );
 
         return component;
@@ -50,21 +58,15 @@ export default {
     //     },
     //   ]
     // );
-    app.registerPlugin({
-      id: pluginId,
-      initializer: Initializer,
-      isReady: false,
-      name,
-      description,
-      isRequired: pluginPkg.strapi.required || false,
-    });
   },
 
-  // bootstrap(app) {},
+  bootstrap(app) {},
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map(locale => {
-        return import(`./translations/${locale}.json`)
+        return import(
+          /* webpackChunkName: "magiclink-translation-[request]" */ `./translations/${locale}.json`
+        )
           .then(({ default: data }) => {
             return {
               data: prefixPluginTranslations(data, pluginId),
