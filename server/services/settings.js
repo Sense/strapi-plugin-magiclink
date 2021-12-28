@@ -7,7 +7,7 @@ const createDefaultConfig = async () => {
     name: 'magiclink',
   });
 
-  const value = { secretkey: ''};
+  const value = { secretKey: ''};
 
   await pluginStore.set({ key: 'settings', value });
 
@@ -43,7 +43,7 @@ module.exports = ({ strapi }) => ({
       name: 'magiclink',
     });
 
-    const value = { secretkey: ctx.request.body.secretKey };
+    const value = { secretKey: ctx.request.body.secretKey };
     await pluginStore.set({ key: 'settings', value });
 
     return strapi

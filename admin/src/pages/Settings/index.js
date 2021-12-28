@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { get } from 'lodash';
 import {
   getYupInnerErrors,
   CheckPagePermissions,
@@ -45,16 +44,15 @@ const SettingsPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSecretKeyValid, setIsSecretKeyValid] = useState(false);
   const [config, setConfig] = useState({
-    settings: { secretKey: '' },
+    secretKey: '',
   });
-  const [secretKey, setSecretKey] = useState(config.settings.secretKey);
+  const [secretKey, setSecretKey] = useState(config?.secretKey);
 
   useEffect(() => {
     setIsLoading(true);
 
     fetchMagicLinkSettings()
       .then(config => {
-        console.log(config)
         notifyStatus(
           formatMessage({
             id: getTrad('Settings.email.plugin.notification.data.loaded'),
@@ -63,8 +61,7 @@ const SettingsPage = () => {
         );
 
         setConfig(config);
-
-        const secretKey = get(config, 'settings.secretKey');
+        const secretKey = config?.secretKey;
 
         if (secretKey) {
           setSecretKey(secretKey);
@@ -83,7 +80,7 @@ const SettingsPage = () => {
   }, [formatMessage, toggleNotification, notifyStatus]);
 
   useEffect(() => {
-    if (formErrors.email) {
+    if (formErrors.secretKey) {
       const input = document.querySelector('#secret-key-input');
       input.focus();
     }
@@ -188,10 +185,10 @@ const SettingsPage = () => {
                       })}
                       value={secretKey}
                       error={
-                        formErrors.email?.id &&
+                        formErrors?.secretKey &&
                         formatMessage({
-                          id: getTrad(`${formErrors.email?.id}`),
-                          defaultMessage: 'This is an invalid email',
+                          id: getTrad(`${formErrors?.secretKey}`),
+                          defaultMessage: 'This is an invalid value',
                         })
                       }
                       placeholder={formatMessage({
