@@ -3,8 +3,6 @@
 const { logMessage } = require('./utils');
 
 module.exports = async () => {
-  const magicLink = strapi.plugin('magiclink');
-
   try {
     // Register permission actions.
     const actions = [

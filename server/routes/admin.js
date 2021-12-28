@@ -5,8 +5,8 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/config',
-      handler: 'config.getConfig',
+      path: '/settings',
+      handler: 'settings.getSettings',
       config: {
         policies: [],
       },
@@ -14,7 +14,7 @@ module.exports = {
     {
       method: 'POST',
       path: '/secretkey',
-      handler: 'config.saveSecretKey',
+      handler: 'settings.saveSecretKey',
       config: {
         policies: [],
       },
