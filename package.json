@@ -10,7 +10,10 @@
     "kind": "plugin"
   },
   "dependencies": {
-    "lodash": "4.17.21"
+    "@magic-ext/oauth": "^1.0.0",
+    "@magic-sdk/admin": "^1.3.4",
+    "lodash": "4.17.21",
+    "magic-sdk": "^7.0.0"
   },
   "devDependencies": {
     "@strapi/design-system": "0.0.1-alpha.70",
