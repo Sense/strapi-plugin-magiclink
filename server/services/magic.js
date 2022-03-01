@@ -37,7 +37,6 @@ const { Magic } = require('@magic-sdk/admin')
 
 module.exports = ({ strapi }) => ({
   login: async (ctx) => {
-    console.log(ctx)
     try{
       const { secretKey } = await strapi.plugins["magiclink"].services["settings"].getConfig()
 
