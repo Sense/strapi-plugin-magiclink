@@ -16,10 +16,10 @@
     "magic-sdk": "^7.0.0"
   },
   "devDependencies": {
-    "@strapi/design-system": "0.0.1-alpha.70",
-    "@strapi/helper-plugin": "4.0.2",
-    "@strapi/icons": "0.0.1-alpha.70",
-    "@strapi/utils": "4.0.2"
+    "@strapi/design-system": "0.0.1-alpha.79",
+    "@strapi/helper-plugin": "4.1.5",
+    "@strapi/icons": "0.0.1-alpha.79",
+    "@strapi/utils": "4.1.5"
   },
   "bugs": {
     "url": "https://github.com/Sense/strapi-plugin-magiclink/issues"

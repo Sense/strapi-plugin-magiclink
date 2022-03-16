@@ -34,30 +34,6 @@ export default {
       },
       // permissions: pluginPermissions['settings'],
     });
-    // app.createSettingSection(
-    //   {
-    //     id: pluginId,
-    //     intlLabel: { id: getTrad('plugin.name'), defaultMessage: 'Magic Link Plugin' },
-    //   },
-    //   [
-    //     {
-    //       intlLabel: {
-    //         id: getTrad('plugin.section.link'),
-    //         defaultMessage: 'Settings',
-    //       },
-    //       id: 'settings',
-    //       to: `/settings/${pluginId}`,
-    //       Component: async () => {
-    //         const component = await import(
-    //           /* webpackChunkName: "email-settings-page" */ './pages/Settings'
-    //         );
-
-    //         return component;
-    //       },
-    //       permissions: pluginPermissions['menu-link'],
-    //     },
-    //   ]
-    // );
   },
 
   bootstrap(app) {},

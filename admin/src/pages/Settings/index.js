@@ -4,9 +4,7 @@ import { useIntl } from 'react-intl';
 import {
   getYupInnerErrors,
   CheckPagePermissions,
-  useNotification,
   LoadingIndicatorPage,
-  useOverlayBlocker,
   useFocusWhenNavigate,
 } from '@strapi/helper-plugin';
 import { Main } from '@strapi/design-system/Main';
@@ -33,9 +31,7 @@ const ProtectedSettingsPage = () => (
 );
 
 const SettingsPage = () => {
-  const toggleNotification = useNotification();
   const { formatMessage } = useIntl();
-  const { lockApp, unlockApp } = useOverlayBlocker();
   const { notifyStatus } = useNotifyAT();
   useFocusWhenNavigate();
 
@@ -67,17 +63,8 @@ const SettingsPage = () => {
           setSecretKey(secretKey);
         }
       })
-      .catch(() =>
-        toggleNotification({
-          type: 'warning',
-          message: formatMessage({
-            id: getTrad('plugin.section.secretkey.not_found'),
-            defaultMessage: 'Failed to retrieve the Magic.link secret key.',
-          }),
-        })
-      )
       .finally(() => setIsLoading(false));
-  }, [formatMessage, toggleNotification, notifyStatus]);
+  }, [formatMessage, notifyStatus]);
 
   useEffect(() => {
     if (formErrors.secretKey) {
@@ -104,36 +91,10 @@ const SettingsPage = () => {
       await schema.validate({ secretKey: secretKey }, { abortEarly: false });
 
       setIsSubmitting(true);
-      lockApp();
 
       saveSecretKey({ secretKey: secretKey })
-        .then(() => {
-          toggleNotification({
-            type: 'success',
-            message: formatMessage(
-              {
-                id: getTrad('Settings.email.plugin.notification.test.success'),
-                defaultMessage: 'Magic.link secret key {secretKey} successfully saved.',
-              },
-              { secretKey: secretKey }
-            ),
-          });
-        })
-        .catch(() => {
-          toggleNotification({
-            type: 'warning',
-            message: formatMessage(
-              {
-                id: getTrad('Settings.email.plugin.notification.test.error'),
-                defaultMessage: 'Error while saving the Magic.link secret key: {secretKey}.',
-              },
-              { secretKey: secretKey }
-            ),
-          });
-        })
         .finally(() => {
           setIsSubmitting(false);
-          unlockApp();
         });
     } catch (error) {
       setFormErrors(getYupInnerErrors(error));
