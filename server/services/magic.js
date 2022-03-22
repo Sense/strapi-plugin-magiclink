@@ -46,7 +46,12 @@ module.exports = ({ strapi }) => ({
       const magic = new Magic(secretKey)
 
       const token = retrieveJWTToken(ctx)
-      await magic.token.validate(token) //This will throw if the token is not valid
+      try {
+        await magic.token.validate(token) //This will throw if the token is not valid
+      } catch (err) {
+        ctx.badRequest("Session has expired. Please re-login.", { error: err.code })
+        throw new Error(err.code)
+      }
       const issuer = await magic.token.getIssuer(token)
       const magicUser = await magic.users.getMetadataByIssuer(issuer)
 
